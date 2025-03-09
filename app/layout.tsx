@@ -7,8 +7,9 @@ import { ThemeProvider } from "./provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Adrian's Portfolio",
-  description: "Modern & Minimal JS Mastery Portfolio",
+  title: "BoostUp Media",
+  description:
+    "At Boostup Media we help you grow your brand with solutions focused on reaching the right audience and delivering impactful and measurable results for your business.",
 };
 
 export default function RootLayout({

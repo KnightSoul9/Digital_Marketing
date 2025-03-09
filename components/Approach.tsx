@@ -15,9 +15,7 @@ const Approach = () => {
         <Card
           title="Planning & Strategy"
           icon={<AceternityIcon order="Phase 1" />}
-          des="We'll collaborate to map out your website's goals, target audience, 
-          and key functionalities. We'll discuss things like site structure, 
-          navigation, and content requirements."
+          des="We work closely with you to craft a results-driven digital strategy tailored to your business goals. From defining your target audience and selecting the right marketing channels to structuring your website and implementing AI-driven automation, we lay the foundation for a powerful online presence. Our approach ensures transparency, fairness, and a focus on client satisfaction at every step."
         >
           <CanvasRevealEffect
             animationSpeed={5.1}
@@ -26,11 +24,9 @@ const Approach = () => {
           />
         </Card>
         <Card
-          title="Development & Progress Update"
+          title="Execution & Optimization"
           icon={<AceternityIcon order="Phase 2" />}
-          des="Once we agree on the plan, I cue my lofi playlist and dive into
-          coding. From initial sketches to polished code, I keep you updated
-          every step of the way."
+          des="We bring your digital strategy to life with precision and efficiency. Whether it’s launching high-converting ad campaigns, executing influencer collaborations, optimizing websites for peak performance, or automating workflows with AI, we ensure seamless execution. Our focus is on continuous improvement—analyzing results and refining strategies to maximize impact and efficiency."
         >
           <CanvasRevealEffect
             animationSpeed={3}
@@ -48,11 +44,9 @@ const Approach = () => {
           {/* <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" /> */}
         </Card>
         <Card
-          title="Development & Launch"
+          title="Analytics & Growth"
           icon={<AceternityIcon order="Phase 3" />}
-          des="This is where the magic happens! Based on the approved design, 
-          I'll translate everything into functional code, building your website
-          from the ground up."
+          des="Data is at the core of every successful digital strategy. We track key performance metrics across marketing campaigns, website traffic, SEO rankings, and automation workflows to identify opportunities for growth. By leveraging data-driven insights, we fine-tune strategies to boost engagement, enhance conversions, and drive long-term success."
         >
           <CanvasRevealEffect
             animationSpeed={3}

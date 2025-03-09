@@ -7,29 +7,32 @@ export const navItems = [
 
 export const gridItems = [
   {
-    id: 1,
-    title: "I prioritize client collaboration, fostering open communication ",
+    id: 2,
+    title:
+      "We work with businesses from different industries and countries, bringing diverse ideas and strategies to the table.",
     description: "",
     className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
     imgClassName: "w-full h-full",
     titleClassName: "justify-end",
-    img: "/b1.svg",
-    spareImg: "",
-  },
-  {
-    id: 2,
-    title: "I'm very flexible with time zone communications",
-    description: "",
-    className: "lg:col-span-2 md:col-span-3 md:row-span-2",
-    imgClassName: "",
-    titleClassName: "justify-start",
     img: "",
     spareImg: "",
   },
   {
+    id: 1,
+    title:
+      "We prioritize client satisfaction and maintain complete transparency, ensuring fair and unbiased service.",
+    description: "",
+    className: "lg:col-span-2 md:col-span-3 md:row-span-2",
+    imgClassName: "",
+    titleClassName: "justify-start",
+    img: "/b1.svg",
+    spareImg: "",
+  },
+  {
     id: 3,
-    title: "My tech stack",
-    description: "I constantly try to improve",
+    title:
+      "We stay ahead by leveraging the latest trends and technologies for maximum impact.",
+    description: "Constantly try to improve",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
     titleClassName: "justify-center",
@@ -41,32 +44,32 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
-    title: "3D Solar System Planets to Explore",
-    des: "Explore the wonders of our solar system with this captivating 3D simulation of the planets using Three.js.",
+    title: " E-Commerce Sales Growth (Performance Marketing)",
+    des: "We helped an e-commerce brand increase its sales by 3.5x through highly optimized Google and Meta ads, reducing customer acquisition costs by 40% while improving ROAS.",
     img: "/p1.svg",
     iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/fm.svg"],
     link: "/ui.earth.com",
   },
   {
     id: 2,
-    title: "Yoom - Video Conferencing App",
-    des: "Simplify your video conferencing experience with Yoom. Seamlessly connect with colleagues and friends.",
+    title: "SEO-Driven Traffic Boost",
+    des: "A real estate client saw a 200% increase in organic traffic within six months as we optimized their website structure, built high-quality backlinks, and improved local SEO rankings.",
     img: "/p2.svg",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
     link: "/ui.yoom.com",
   },
   {
     id: 3,
-    title: "AI Image SaaS - Canva Application",
-    des: "A REAL Software-as-a-Service app with AI features and a payments and credits system using the latest tech stack.",
+    title: "Custom Website Development",
+    des: "We designed and developed a fast, SEO-friendly website for a startup, improving their conversion rate by 35% with a sleek UI, optimized performance, and mobile-first design.",
     img: "/p3.svg",
     iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
     link: "/ui.aiimg.com",
   },
   {
     id: 4,
-    title: "Animated Apple Iphone 3D Website",
-    des: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..",
+    title: "AI Chatbot for Customer Support",
+    des: "We built an AI-powered chatbot for a fintech company that automated 70% of customer queries, reducing response time and improving user engagement.",
     img: "/p4.svg",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
     link: "/ui.apple.com",
@@ -142,45 +145,63 @@ export const companies = [
 export const workExperience = [
   {
     id: 1,
-    title: "Frontend Engineer Intern",
-    desc: "Assisted in the development of a web-based platform using React.js, enhancing interactivity.",
+    title: "Performance Marketing",
+    desc: "We create data-driven ad campaigns that maximize ROI. Our approach focuses on measurable results, optimizing every aspect to drive conversions and business growth.",
     className: "md:col-span-2",
     thumbnail: "/exp1.svg",
   },
   {
     id: 2,
-    title: "Mobile App Dev - JSM Tech",
-    desc: "Designed and developed mobile app for both iOS & Android platforms using React Native.",
+    title: "Influencer Marketing",
+    desc: "We connect brands with the right influencers to boost reach and engagement. Our tailored strategies ensure authentic collaborations that drive real impact.",
     className: "md:col-span-2", // change to md:col-span-2
-    thumbnail: "/exp2.svg",
+    thumbnail: "/insta.svg",
   },
   {
     id: 3,
-    title: "Freelance App Dev Project",
-    desc: "Led the dev of a mobile app for a client, from initial concept to deployment on app stores.",
+    title: "Search Engine Optimization",
+    desc: "We optimize your website to rank higher on search engines, driving organic traffic and increasing visibility through proven SEO strategies.",
     className: "md:col-span-2", // change to md:col-span-2
     thumbnail: "/exp3.svg",
   },
   {
     id: 4,
-    title: "Lead Frontend Developer",
-    desc: "Developed and maintained user-facing features using modern frontend technologies.",
+    title: "Web Development",
+    desc: "We build high-performing, user-friendly websites that align with your brand’s vision. From design to functionality, we ensure seamless digital experiences.",
     className: "md:col-span-2",
     thumbnail: "/exp4.svg",
+  },
+  {
+    id: 5,
+    title: "AI Automation",
+    desc: "We streamline business processes with AI-driven automation, improving efficiency, reducing manual tasks, and enhancing customer interactions.",
+    className: "md:col-span-2", // change to md:col-span-2
+    thumbnail: "/exp1.svg",
+  },
+  {
+    id: 6,
+    title: "Digital Marketing",
+    desc: "We craft comprehensive marketing strategies using data, creativity, and technology to grow your brand online and attract the right audience.",
+    className: "md:col-span-2", // change to md:col-span-2
+    thumbnail: "/exp2.svg",
   },
 ];
 
 export const socialMedia = [
   {
     id: 1,
-    img: "/git.svg",
+    img: "/twit.svg",
+    link: "https://github.com/yourprofile",
   },
   {
     id: 2,
-    img: "/twit.svg",
+    img: "/insta.svg",
+    link: "https://www.instagram.com/boostuponline/",
   },
   {
     id: 3,
     img: "/link.svg",
+    link: "https://www.linkedin.com/company/boostuponline/",
   },
 ];
+
