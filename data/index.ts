@@ -1,0 +1,206 @@
+export const navItems = [
+  { name: "About", link: "#about" },
+  { name: "Projects", link: "#projects" },
+  { name: "Testimonials", link: "#testimonials" },
+  { name: "Contact", link: "#contact" },
+];
+export const gridItems = [
+  {
+    id: 1,
+    title:
+      "We prioritize client satisfaction and maintain complete transparency, ensuring fair and unbiased service.",
+    description: "",
+    className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
+    imgClassName: "w-full h-full",
+    titleClassName: "justify-end",
+    img: "/b1.svg",
+    spareImg: "",
+  },
+  {
+    id: 2,
+    title:
+      "We work with businesses from different industries and countries, bringing diverse ideas and strategies to the table.",
+    description: "",
+    className: "lg:col-span-2 md:col-span-3 md:row-span-2",
+    imgClassName: "",
+    titleClassName: "justify-start",
+    img: "",
+    spareImg: "",
+  },
+  {
+    id: 3,
+    title:
+      "We stay ahead by leveraging the latest trends and technologies for maximum impact.",
+    description: "Constantly try to improve",
+    className: "lg:col-span-2 md:col-span-3 md:row-span-2",
+    imgClassName: "",
+    titleClassName: "justify-center",
+    img: "",
+    spareImg: "",
+  },
+];
+
+export const projects = [
+  {
+    id: 1,
+    title: " E-Commerce Sales Growth (Performance Marketing)",
+    des: "We helped an e-commerce brand increase its sales by 3.5x through highly optimized Google and Meta ads, reducing customer acquisition costs by 40% while improving ROAS.",
+    img: "/prj1.png",
+    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/fm.svg"],
+    link: "https://v0-ecommerce-project-page.vercel.app/projects/ecommerce-growth",
+  },
+  {
+    id: 2,
+    title: "SEO-Driven Traffic Boost",
+    des: "A real estate client saw a 200% increase in organic traffic within six months as we optimized their website structure, built high-quality backlinks, and improved local SEO rankings.",
+    img: "/p2.svg",
+    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
+    link: "/ui.yoom.com",
+  },
+  {
+    id: 3,
+    title: "Custom Website Development",
+    des: "We designed and developed a fast, SEO-friendly website for a startup, improving their conversion rate by 35% with a sleek UI, optimized performance, and mobile-first design.",
+    img: "/p3.svg",
+    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
+    link: "/ui.aiimg.com",
+  },
+  {
+    id: 4,
+    title: "AI Chatbot for Customer Support",
+    des: "We built an AI-powered chatbot for a fintech company that automated 70% of customer queries, reducing response time and improving user engagement.",
+    img: "/p4.svg",
+    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
+    link: "/ui.apple.com",
+  },
+];
+
+export const testimonials = [
+  {
+    quote:
+      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
+    name: "Michael Johnson",
+    title: "Director of AlphaStream Technologies",
+  },
+  {
+    quote:
+      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
+    name: "Michael Johnson",
+    title: "Director of AlphaStream Technologies",
+  },
+  {
+    quote:
+      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
+    name: "Michael Johnson",
+    title: "Director of AlphaStream Technologies",
+  },
+  {
+    quote:
+      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
+    name: "Michael Johnson",
+    title: "Director of AlphaStream Technologies",
+  },
+  {
+    quote:
+      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
+    name: "Michael Johnson",
+    title: "Director of AlphaStream Technologies",
+  },
+];
+
+export const companies = [
+  {
+    id: 1,
+    name: "cloudinary",
+    img: "/cloud.svg",
+    nameImg: "/cloudName.svg",
+  },
+  {
+    id: 2,
+    name: "appwrite",
+    img: "/app.svg",
+    nameImg: "/appName.svg",
+  },
+  {
+    id: 3,
+    name: "HOSTINGER",
+    img: "/host.svg",
+    nameImg: "/hostName.svg",
+  },
+  {
+    id: 4,
+    name: "stream",
+    img: "/s.svg",
+    nameImg: "/streamName.svg",
+  },
+  {
+    id: 5,
+    name: "docker.",
+    img: "/dock.svg",
+    nameImg: "/dockerName.svg",
+  },
+];
+
+export const workExperience = [
+  {
+    id: 1,
+    title: "Performance Marketing",
+    desc: "We create data-driven ad campaigns that maximize ROI. Our approach focuses on measurable results, optimizing every aspect to drive conversions and business growth.",
+    className: "md:col-span-2",
+    thumbnail: "/exp1.svg",
+  },
+  {
+    id: 2,
+    title: "Influencer Marketing",
+    desc: "We connect brands with the right influencers to boost reach and engagement. Our tailored strategies ensure authentic collaborations that drive real impact.",
+    className: "md:col-span-2", // change to md:col-span-2
+    thumbnail: "/insta.svg",
+  },
+  {
+    id: 3,
+    title: "Search Engine Optimization",
+    desc: "We optimize your website to rank higher on search engines, driving organic traffic and increasing visibility through proven SEO strategies.",
+    className: "md:col-span-2", // change to md:col-span-2
+    thumbnail: "/exp3.svg",
+  },
+  {
+    id: 4,
+    title: "Web Development",
+    desc: "We build high-performing, user-friendly websites that align with your brand’s vision. From design to functionality, we ensure seamless digital experiences.",
+    className: "md:col-span-2",
+    thumbnail: "/exp4.svg",
+  },
+  {
+    id: 5,
+    title: "AI Automation",
+    desc: "We streamline business processes with AI-driven automation, improving efficiency, reducing manual tasks, and enhancing customer interactions.",
+    className: "md:col-span-2", // change to md:col-span-2
+    thumbnail: "/exp1.svg",
+  },
+  {
+    id: 6,
+    title: "Digital Marketing",
+    desc: "We craft comprehensive marketing strategies using data, creativity, and technology to grow your brand online and attract the right audience.",
+    className: "md:col-span-2", // change to md:col-span-2
+    thumbnail: "/exp2.svg",
+  },
+];
+
+export const socialMedia = [
+  {
+    id: 1,
+    img: "/twit.svg",
+    link: "https://github.com/yourprofile",
+  },
+  {
+    id: 2,
+    img: "/insta.svg",
+    link: "https://www.instagram.com/boostuponline/",
+  },
+  {
+    id: 3,
+    img: "/link.svg",
+    link: "https://www.linkedin.com/company/boostuponline/",
+  },
+];
+
