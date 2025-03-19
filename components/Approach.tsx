@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useCallback, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
 import { CanvasRevealEffect } from "./ui/CanvasRevealEffect";
 
 const Approach = () => {
@@ -9,7 +8,7 @@ const Approach = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setActivePhase((prev) => (prev < 3 ? prev + 1 : 1));
-    }, 1200); // Even faster timing - 1.2 seconds
+    }, 3000); // Faster timing - 1.2 seconds
 
     return () => clearInterval(timer);
   }, []);
@@ -136,6 +135,8 @@ const ApproachCard = memo(
   }
 );
 
+ApproachCard.displayName = "ApproachCard";
+
 const CardContent = memo(({ title, des }: { title: string; des: string }) => (
   <motion.div initial="hidden" animate="visible" variants={contentVariants}>
     <motion.h2
@@ -154,6 +155,8 @@ const CardContent = memo(({ title, des }: { title: string; des: string }) => (
     </motion.p>
   </motion.div>
 ));
+
+CardContent.displayName = "CardContent";
 
 const contentVariants = {
   hidden: { opacity: 0 },
@@ -183,6 +186,8 @@ const CornerIcons = memo(() => (
   </>
 ));
 
+CornerIcons.displayName = "CornerIcons";
+
 const AceternityIcon = memo(({ order }: { order: string }) => (
   <div>
     <button className="relative inline-flex overflow-hidden rounded-full p-[1px]">
@@ -200,6 +205,8 @@ const AceternityIcon = memo(({ order }: { order: string }) => (
   </div>
 ));
 
+AceternityIcon.displayName = "AceternityIcon";
+
 export const Icon = memo(({ className, ...rest }: any) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -213,3 +220,5 @@ export const Icon = memo(({ className, ...rest }: any) => (
     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
   </svg>
 ));
+
+Icon.displayName = "Icon";
