@@ -33,7 +33,7 @@ const Approach = () => {
   );
 };
 
-export default memo(Approach);
+export default Approach;
 
 const CARDS_DATA = [
   {
