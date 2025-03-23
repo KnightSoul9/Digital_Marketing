@@ -3,6 +3,7 @@ export const navItems = [
   { name: "Projects", link: "#projects" },
   { name: "Testimonials", link: "#testimonials" },
   { name: "Contact", link: "#contact" },
+  {name: "Our Blogs", link: "#blogs"}
 ];
 export const gridItems = [
   {
@@ -75,6 +76,40 @@ export const projects = [
   },
 ];
 
+export const blogs = [
+  {
+    id: 1,
+    title: "First Blog",
+    des: "We helped an e-commerce brand increase its sales by 3.5x through highly optimized Google and Meta ads, reducing customer acquisition costs by 40% while improving ROAS.",
+    img: "/prj1.png",
+    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/fm.svg"],
+    link: "https://v0-ecommerce-project-page.vercel.app/projects/ecommerce-growth",
+  },
+  {
+    id: 2,
+    title: "Second Blog",
+    des: "A real estate client saw a 200% increase in organic traffic within six months as we optimized their website structure, built high-quality backlinks, and improved local SEO rankings.",
+    img: "/p2.svg",
+    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
+    link: "/ui.yoom.com",
+  },
+  {
+    id: 3,
+    title: "Third Blog",
+    des: "We designed and developed a fast, SEO-friendly website for a startup, improving their conversion rate by 35% with a sleek UI, optimized performance, and mobile-first design.",
+    img: "/p3.svg",
+    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
+    link: "/ui.aiimg.com",
+  },
+  {
+    id: 4,
+    title: "Forth Blog",
+    des: "We built an AI-powered chatbot for a fintech company that automated 70% of customer queries, reducing response time and improving user engagement.",
+    img: "/p4.svg",
+    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
+    link: "/ui.apple.com",
+  },
+];
 export const testimonials = [
   {
     quote:

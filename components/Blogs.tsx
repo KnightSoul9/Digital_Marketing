@@ -2,18 +2,18 @@
 
 import { FaLocationArrow } from "react-icons/fa6";
 import Image from "next/image"; // Import Next.js Image component
-import { projects } from "@/data";
+import { blogs } from "@/data";
 import { PinContainer } from "./ui/Pin";
 
-const RecentProjects = () => {
+const Blogs = () => {
   return (
     <div className="py-20">
-      <h1 id="projects" className="heading">
-        A small selection of{" "}
-        <span className="text-purple">recent projects</span>
+      <h1 id="blogs" className="heading">
+        {"Our Latest "}
+        <span className="text-purple">Blogs</span>
       </h1>
       <div className="flex flex-wrap items-center justify-center p-4 gap-16 mt-10">
-        {projects.map((item) => (
+        {blogs.map((item) => (
           <div
             className="lg:min-h-[32.5rem] h-[25rem] flex items-center justify-center sm:w-96 w-[80vw]"
             key={item.id}
@@ -82,7 +82,7 @@ const RecentProjects = () => {
 
                 <div className="flex justify-center items-center">
                   <p className="flex lg:text-xl md:text-xs text-sm text-purple">
-                    Check Live Site
+                    CheckOut Here
                   </p>
                   <FaLocationArrow className="ms-3" color="#CBACF9" />
                 </div>
@@ -95,4 +95,4 @@ const RecentProjects = () => {
   );
 };
 
-export default RecentProjects;
+export default Blogs;
