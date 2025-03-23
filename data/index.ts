@@ -179,10 +179,10 @@ export const workExperience = [
   },
   {
     id: 6,
-    title: "Digital Marketing",
-    desc: "We craft comprehensive marketing strategies using data, creativity, and technology to grow your brand online and attract the right audience.",
-    className: "md:col-span-2", // change to md:col-span-2
-    thumbnail: "/exp2.svg",
+    title: "App Development",
+    desc: "We design and develop high-performance mobile and web applications tailored to your business needs, ensuring a seamless user experience.",
+    className: "md:col-span-2",
+    thumbnail: "/exp1.svg",
   },
 ];
 
@@ -203,4 +203,3 @@ export const socialMedia = [
     link: "https://www.linkedin.com/company/boostuponline/",
   },
 ];
-
