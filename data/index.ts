@@ -182,7 +182,7 @@ export const workExperience = [
     title: "App Development",
     desc: "We design and develop high-performance mobile and web applications tailored to your business needs, ensuring a seamless user experience.",
     className: "md:col-span-2",
-    thumbnail: "/exp1.svg",
+    thumbnail: "/exp2.svg",
   },
 ];
 
