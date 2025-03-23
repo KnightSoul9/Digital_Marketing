@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Image from "next/image"; // Import Next.js Image component
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 import { cn } from "@/lib/utils";
@@ -52,19 +52,25 @@ export const BentoGridItem = ({
   titleClassName?: string;
   spareImg?: string;
 }) => {
-  const leftLists = ["ReactJS", "Express", "Typescript"];
-  const rightLists = ["VueJS", "NuxtJS", "GraphQL"];
-
   const [copied, setCopied] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
+  // Only track client-side for components that need it (ID 6)
   useEffect(() => {
-    setIsClient(true);
-  }, []);
+    if (id === 6) {
+      setIsClient(true);
+    }
+  }, [id]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText("hsu@jsmastery.pro");
     setCopied(true);
+  };
+
+  // Pre-define tech stacks to avoid recreating arrays on each render
+  const techStacks = {
+    left: ["SEO", "PPC", "Content"],
+    right: ["Social", "Email", "Analytics"],
   };
 
   return (
@@ -75,30 +81,32 @@ export const BentoGridItem = ({
       )}
       style={{
         background: "rgb(4,7,29)",
-        backgroundColor:
+        backgroundImage:
           "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
       }}
     >
-      {/* Image Background */}
-      <div className={`${id === 6 && "flex justify-center"} h-full`}>
-        <div className="w-full h-full absolute">
-          {img && (
+      <div className={`${id === 6 ? "flex justify-center" : ""} h-full`}>
+        {/* Image Background - only render if img prop exists */}
+        {img && (
+          <div className="w-full h-full absolute">
             <Image
               src={img}
               alt="Bento Item"
               layout="fill"
               objectFit="cover"
-              className={cn(imgClassName)}
+              className={imgClassName}
               priority
             />
-          )}
-        </div>
-        <div
-          className={`absolute right-0 -bottom-5 ${
-            id === 5 && "w-full opacity-80"
-          }`}
-        >
-          {spareImg && (
+          </div>
+        )}
+
+        {/* Spare Image - only render if spareImg prop exists */}
+        {spareImg && (
+          <div
+            className={`absolute right-0 -bottom-5 ${
+              id === 5 ? "w-full opacity-80" : ""
+            }`}
+          >
             <Image
               src={spareImg}
               alt="Spare"
@@ -107,10 +115,10 @@ export const BentoGridItem = ({
               height={300}
               className="object-cover object-center w-full h-full"
             />
-          )}
-        </div>
+          </div>
+        )}
 
-        {/* Background Animation for ID 6 */}
+        {/* Background Animation - only render for ID 6 */}
         {id === 6 && (
           <BackgroundGradientAnimation>
             <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 text-3xl md:text-4xl lg:text-7xl"></div>
@@ -125,23 +133,27 @@ export const BentoGridItem = ({
           )}
         >
           {/* Description */}
-          <div className="font-sans font-extralight md:max-w-32 md:text-xs lg:text-base text-sm text-[#C1C2D3] z-10">
-            {description}
-          </div>
+          {description && (
+            <div className="font-sans font-extralight md:max-w-32 md:text-xs lg:text-base text-sm text-[#C1C2D3] z-10">
+              {description}
+            </div>
+          )}
 
           {/* Title */}
-          <div className="font-sans text-lg lg:text-3xl max-w-96 font-bold z-10">
-            {title}
-          </div>
+          {title && (
+            <div className="font-sans text-lg lg:text-3xl max-w-96 font-bold z-10">
+              {title}
+            </div>
+          )}
 
-          {/* Grid Globe for ID 2 */}
+          {/* Grid Globe - only render for ID 2 */}
           {id === 2 && <GridGlobe />}
 
-          {/* Tech Stack for ID 3 */}
+          {/* Tech Stack - only render for ID 3 */}
           {id === 3 && (
             <div className="flex gap-1 lg:gap-5 w-fit absolute -right-3 lg:-right-2">
               <div className="flex flex-col gap-3 md:gap-3 lg:gap-8">
-                {leftLists.map((item, i) => (
+                {techStacks.left.map((item, i) => (
                   <span
                     key={i}
                     className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 rounded-lg text-center bg-[#10132E]"
@@ -153,7 +165,7 @@ export const BentoGridItem = ({
               </div>
               <div className="flex flex-col gap-3 md:gap-3 lg:gap-8">
                 <span className="lg:py-4 lg:px-3 py-4 px-3 rounded-lg text-center bg-[#10132E]"></span>
-                {rightLists.map((item, i) => (
+                {techStacks.right.map((item, i) => (
                   <span
                     key={i}
                     className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 rounded-lg text-center bg-[#10132E]"
@@ -165,22 +177,18 @@ export const BentoGridItem = ({
             </div>
           )}
 
-          {/* Copy Email Button with Lottie for ID 6 */}
+          {/* Copy Email Button - only render for ID 6 */}
           {id === 6 && (
             <div className="mt-5 relative">
-              <div
-                className={`absolute -bottom-5 right-0 ${
-                  copied ? "block" : "hidden"
-                }`}
-              >
-                {isClient && (
+              {copied && isClient && (
+                <div className="absolute -bottom-5 right-0">
                   <Lottie
                     animationData={animationData}
-                    loop={copied}
-                    autoplay={copied}
+                    loop={true}
+                    autoplay={true}
                   />
-                )}
-              </div>
+                </div>
+              )}
               <MagicButton
                 title={copied ? "Email is Copied!" : "Copy my email address"}
                 icon={<IoCopyOutline />}

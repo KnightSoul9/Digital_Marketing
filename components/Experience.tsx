@@ -1,51 +1,76 @@
-import React from "react";
-import Image from "next/image"; // Import Next.js Image component
+"use client";
+
+import React, { memo, useMemo } from "react";
+import Image from "next/image";
 import { workExperience } from "@/data";
 import { Button } from "./ui/MovingBorders";
 
-const Experience = () => {
+interface ExperienceCard {
+  id: number;
+  title: string;
+  desc: string;
+  thumbnail: string;
+}
+
+// Memoized card component to prevent unnecessary re-renders
+const ServiceCard = memo(({ card }: { card: ExperienceCard }) => {
+  // Memoize the random duration to prevent it from changing on re-renders
+  const duration = useMemo(() => Math.floor(Math.random() * 10000) + 10000, []);
+
   return (
-    <div className="py-20 w-full">
+    <Button
+      duration={duration}
+      borderRadius="1.75rem"
+      style={{
+        background: "rgb(4,7,29)",
+        backgroundColor:
+          "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
+        borderRadius: `calc(1.75rem * 0.96)`,
+      }}
+      className="flex-1 text-black dark:text-white border-neutral-200 dark:border-slate-800"
+    >
+      <div className="flex lg:flex-row flex-col lg:items-center p-3 py-6 md:p-5 lg:p-10 gap-2">
+        <Image
+          src={card.thumbnail}
+          alt={card.title}
+          width={128}
+          height={128}
+          className="lg:w-32 md:w-20 w-16"
+          loading="lazy"
+          quality={85}
+        />
+        <div className="lg:ms-5">
+          <h1 className="text-start text-xl md:text-2xl font-bold">
+            {card.title}
+          </h1>
+          <p className="text-start text-white-100 mt-3 font-semibold">
+            {card.desc}
+          </p>
+        </div>
+      </div>
+    </Button>
+  );
+});
+
+ServiceCard.displayName = "ServiceCard";
+
+const Experience = () => {
+  // Memoize the experience data to prevent unnecessary recalculations
+  const memoizedExperience = useMemo(() => workExperience, []);
+
+  return (
+    <section className="py-20 w-full">
       <h1 className="heading">
         Our <span className="text-purple">Services</span>
       </h1>
 
       <div className="w-full mt-12 grid lg:grid-cols-4 grid-cols-1 gap-10">
-        {workExperience.map((card) => (
-          <Button
-            key={card.id}
-            duration={Math.floor(Math.random() * 10000) + 10000}
-            borderRadius="1.75rem"
-            style={{
-              background: "rgb(4,7,29)",
-              backgroundColor:
-                "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-              borderRadius: `calc(1.75rem * 0.96)`,
-            }}
-            className="flex-1 text-black dark:text-white border-neutral-200 dark:border-slate-800"
-          >
-            <div className="flex lg:flex-row flex-col lg:items-center p-3 py-6 md:p-5 lg:p-10 gap-2">
-              <Image
-                src={card.thumbnail}
-                alt={card.title} // Use card.title instead of alt={card.thumbnail}
-                width={128} // Adjust as per lg:w-32
-                height={128} // Adjust to maintain aspect ratio
-                className="lg:w-32 md:w-20 w-16"
-              />
-              <div className="lg:ms-5">
-                <h1 className="text-start text-xl md:text-2xl font-bold">
-                  {card.title}
-                </h1>
-                <p className="text-start text-white-100 mt-3 font-semibold">
-                  {card.desc}
-                </p>
-              </div>
-            </div>
-          </Button>
+        {memoizedExperience.map((card) => (
+          <ServiceCard key={card.id} card={card} />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
-export default Experience;
+export default memo(Experience);

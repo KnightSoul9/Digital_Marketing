@@ -1,39 +1,56 @@
-import React, { useEffect, useState, useCallback, memo } from "react";
+import React, { useEffect, useState, useCallback, memo, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CanvasRevealEffect } from "./ui/CanvasRevealEffect";
 
-const Approach = () => {
-  const [activePhase, setActivePhase] = useState(0);
+// Define proper types
+interface CardProps {
+  title: string;
+  des: string;
+  canvasProps: {
+    animationSpeed: number;
+    containerClassName: string;
+    colors?: number[][];
+    dotSize?: number;
+  };
+  isActive: boolean;
+  phase: number;
+}
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActivePhase((prev) => (prev < 3 ? prev + 1 : 1));
-    }, 3000); // Faster timing - 1.2 seconds
+interface IconProps {
+  className?: string;
+  [key: string]: any;
+}
 
-    return () => clearInterval(timer);
-  }, []);
+interface AceternityIconProps {
+  order: string;
+}
 
-  return (
-    <section className="w-full py-20">
-      <h1 className="heading">
-        Our <span className="text-purple">Approach</span>
-      </h1>
-      <div className="my-20 flex flex-col lg:flex-row items-center justify-center w-full gap-4">
-        {CARDS_DATA.map((card, index) => (
-          <ApproachCard
-            key={card.title}
-            {...card}
-            isActive={activePhase >= index + 1}
-            phase={index + 1}
-          />
-        ))}
-      </div>
-    </section>
-  );
+interface CardContentProps {
+  title: string;
+  des: string;
+}
+
+// Predefined animation variants to avoid recreation
+const contentVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
 };
 
-export default Approach;
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.3 },
+  },
+};
 
+// Memoized card data to prevent recreation
 const CARDS_DATA = [
   {
     title: "Planning & Strategy",
@@ -67,35 +84,89 @@ const CARDS_DATA = [
   },
 ];
 
+// Optimized corner icons component
+const CornerIcons = memo(() => (
+  <>
+    <Icon className="absolute h-10 w-10 -top-3 -left-3 dark:text-white text-black opacity-30" />
+    <Icon className="absolute h-10 w-10 -bottom-3 -left-3 dark:text-white text-black opacity-30" />
+    <Icon className="absolute h-10 w-10 -top-3 -right-3 dark:text-white text-black opacity-30" />
+    <Icon className="absolute h-10 w-10 -bottom-3 -right-3 dark:text-white text-black opacity-30" />
+  </>
+));
+CornerIcons.displayName = "CornerIcons";
+
+// Optimized icon component with proper typing
+const Icon = memo(({ className, ...rest }: IconProps) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth="1.5"
+    stroke="currentColor"
+    className={className}
+    {...rest}
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
+  </svg>
+));
+Icon.displayName = "Icon";
+
+// Optimized Acernity icon component with proper typing
+const AceternityIcon = memo(({ order }: AceternityIconProps) => (
+  <div>
+    <button className="relative inline-flex overflow-hidden rounded-full p-[1px]">
+      <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+      <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 lg:px-5 py-1 lg:py-2 text-purple backdrop-blur-3xl font-bold text-lg lg:text-2xl">
+        {order}
+      </span>
+    </button>
+  </div>
+));
+AceternityIcon.displayName = "AceternityIcon";
+
+// Optimized card content component with proper typing
+const CardContent = memo(({ title, des }: CardContentProps) => (
+  <motion.div initial="hidden" animate="visible" variants={contentVariants}>
+    <motion.h2
+      variants={itemVariants}
+      className="dark:text-white text-center text-xl lg:text-3xl relative z-10 text-white mt-4 font-bold"
+    >
+      {title}
+    </motion.h2>
+    <motion.p
+      variants={itemVariants}
+      className="text-xs lg:text-sm relative z-10 mt-4 text-center"
+      style={{ color: "#E4ECFF" }}
+    >
+      {des}
+    </motion.p>
+  </motion.div>
+));
+CardContent.displayName = "CardContent";
+
+// Optimized approach card component
 const ApproachCard = memo(
-  ({
-    title,
-    des,
-    canvasProps,
-    isActive,
-    phase,
-  }: {
-    title: string;
-    des: string;
-    canvasProps: any;
-    isActive: boolean;
-    phase: number;
-  }) => {
+  ({ title, des, canvasProps, isActive, phase }: CardProps) => {
+    // Memoize the icon render function
     const renderIcon = useCallback(
       () => <AceternityIcon order={`Phase ${phase}`} />,
       [phase]
     );
 
+    // Memoize the background style
+    const cardStyle = useMemo(
+      () => ({
+        background: "rgb(4,7,29)",
+        backgroundImage:
+          "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
+      }),
+      []
+    );
+
     return (
       <div
-        className="border border-black/[0.2] group/canvas-card flex items-center justify-center
-       dark:border-white/[0.2] max-w-sm w-full mx-auto p-4 relative lg:h-[35rem] h-[25rem] rounded-3xl 
-       transition-all duration-300"
-        style={{
-          background: "rgb(4,7,29)",
-          backgroundColor:
-            "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-        }}
+        className="border border-black/[0.2] group/canvas-card flex items-center justify-center dark:border-white/[0.2] max-w-sm w-full mx-auto p-4 relative lg:h-[35rem] h-[25rem] rounded-3xl transition-all duration-300"
+        style={cardStyle}
       >
         <CornerIcons />
 
@@ -120,8 +191,7 @@ const ApproachCard = memo(
                 initial={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="text-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] 
-              min-w-40 mx-auto flex items-center justify-center"
+                className="text-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] min-w-40 mx-auto flex items-center justify-center"
               >
                 {renderIcon()}
               </motion.div>
@@ -134,91 +204,38 @@ const ApproachCard = memo(
     );
   }
 );
-
 ApproachCard.displayName = "ApproachCard";
 
-const CardContent = memo(({ title, des }: { title: string; des: string }) => (
-  <motion.div initial="hidden" animate="visible" variants={contentVariants}>
-    <motion.h2
-      variants={itemVariants}
-      className="dark:text-white text-center text-xl lg:text-3xl
-      relative z-10 text-white mt-4 font-bold"
-    >
-      {title}
-    </motion.h2>
-    <motion.p
-      variants={itemVariants}
-      className="text-xs lg:text-sm relative z-10 mt-4 text-center"
-      style={{ color: "#E4ECFF" }}
-    >
-      {des}
-    </motion.p>
-  </motion.div>
-));
+// Main component
+const Approach = () => {
+  const [activePhase, setActivePhase] = useState(0);
 
-CardContent.displayName = "CardContent";
+  useEffect(() => {
+    // Optimized interval setup
+    const timer = setInterval(() => {
+      setActivePhase((prev) => (prev < 3 ? prev + 1 : 1));
+    }, 3000);
 
-const contentVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <section className="w-full py-20">
+      <h1 className="heading">
+        Our <span className="text-purple">Approach</span>
+      </h1>
+      <div className="my-20 flex flex-col lg:flex-row items-center justify-center w-full gap-4">
+        {CARDS_DATA.map((card, index) => (
+          <ApproachCard
+            key={card.title}
+            {...card}
+            isActive={activePhase >= index + 1}
+            phase={index + 1}
+          />
+        ))}
+      </div>
+    </section>
+  );
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.3 },
-  },
-};
-
-const CornerIcons = memo(() => (
-  <>
-    <Icon className="absolute h-10 w-10 -top-3 -left-3 dark:text-white text-black opacity-30" />
-    <Icon className="absolute h-10 w-10 -bottom-3 -left-3 dark:text-white text-black opacity-30" />
-    <Icon className="absolute h-10 w-10 -top-3 -right-3 dark:text-white text-black opacity-30" />
-    <Icon className="absolute h-10 w-10 -bottom-3 -right-3 dark:text-white text-black opacity-30" />
-  </>
-));
-
-CornerIcons.displayName = "CornerIcons";
-
-const AceternityIcon = memo(({ order }: { order: string }) => (
-  <div>
-    <button className="relative inline-flex overflow-hidden rounded-full p-[1px]">
-      <span
-        className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite]
-        bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"
-      />
-      <span
-        className="inline-flex h-full w-full cursor-pointer items-center 
-        justify-center rounded-full bg-slate-950 px-3 lg:px-5 py-1 lg:py-2 text-purple backdrop-blur-3xl font-bold text-lg lg:text-2xl"
-      >
-        {order}
-      </span>
-    </button>
-  </div>
-));
-
-AceternityIcon.displayName = "AceternityIcon";
-
-export const Icon = memo(({ className, ...rest }: any) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    className={className}
-    {...rest}
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
-  </svg>
-));
-
-Icon.displayName = "Icon";
+export default memo(Approach);
