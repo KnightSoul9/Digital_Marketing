@@ -3,14 +3,13 @@ export const navItems = [
   { name: "Projects", link: "#projects" },
   { name: "Testimonials", link: "#testimonials" },
   { name: "Contact", link: "#contact" },
-  {name: "Our Blogs", link: "#blogs"}
+  {name: "Blogs", link: "#blogs"}
 ];
 export const gridItems = [
   {
     id: 1,
-    title:
-      "We prioritize client satisfaction and maintain complete transparency, ensuring fair and unbiased service.",
-    description: "",
+    title: "Client Centric & Transparency",
+    description: "We put your needs first & maintain transparency",
     className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
     imgClassName: "w-full h-full",
     titleClassName: "justify-end",
@@ -19,9 +18,8 @@ export const gridItems = [
   },
   {
     id: 2,
-    title:
-      "We work with businesses from different industries and countries, bringing diverse ideas and strategies to the table.",
-    description: "",
+    title: " Global Reach",
+    description: "We partner with businesses globally",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
     titleClassName: "justify-start",
@@ -30,9 +28,9 @@ export const gridItems = [
   },
   {
     id: 3,
-    title:
-      "We stay ahead by leveraging the latest trends and technologies for maximum impact.",
-    description: "Constantly try to improve",
+    title: "Cutting-Edge Solution",
+    description:
+      "We blend creativity and  tech to genuinely make a difference",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
     titleClassName: "justify-center",
