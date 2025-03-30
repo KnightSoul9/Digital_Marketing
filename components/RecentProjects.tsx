@@ -5,6 +5,7 @@ import { FaLocationArrow } from "react-icons/fa6";
 import Image from "next/image";
 import { projects } from "@/data";
 import { PinContainer } from "./ui/Pin";
+import { useRouter } from "next/navigation";
 
 interface Project {
   id: number;
@@ -42,69 +43,76 @@ const ProjectIcon = memo(({ icon, index }: ProjectIconProps) => (
 ProjectIcon.displayName = "ProjectIcon";
 
 // Memoized project card component
-const ProjectCard = memo(({ project }: { project: Project }) => (
-  <div
-    className="lg:min-h-[32.5rem] h-[25rem] flex items-center justify-center sm:w-96 w-[80vw]"
-    key={project.id}
-  >
-    <PinContainer
-      title="/ui.aceternity.com"
-      href={project.link || "https://twitter.com/mannupaaji"}
+const ProjectCard = memo(({ project }: { project: Project }) => {
+  const router = useRouter(); // Initialize Next.js router
+
+  // Function to handle project click
+  const handleProjectClick = () => {
+    router.push(`/portfolio/${project.id}`);
+  };
+
+  return (
+    <div
+      className="lg:min-h-[32.5rem] h-[25rem] flex items-center justify-center sm:w-96 w-[80vw] cursor-pointer"
+      key={project.id}
+      onClick={handleProjectClick} // Attach click event
     >
-      <div className="relative flex items-center justify-center sm:w-96 w-[80vw] overflow-hidden h-[20vh] lg:h-[30vh] mb-10">
-        <div
-          className="relative w-full h-full overflow-hidden lg:rounded-3xl"
-          style={{ backgroundColor: "#13162D" }}
-        >
+      <PinContainer title={project.title} href="#">
+        <div className="relative flex items-center justify-center sm:w-96 w-[80vw] overflow-hidden h-[20vh] lg:h-[30vh] mb-10">
+          <div
+            className="relative w-full h-full overflow-hidden lg:rounded-3xl"
+            style={{ backgroundColor: "#13162D" }}
+          >
+            <Image
+              src="/bg.png"
+              alt="Background image"
+              fill
+              sizes="(max-width: 768px) 80vw, 384px"
+              className="object-cover"
+              priority={false}
+            />
+          </div>
           <Image
-            src="/bg.png"
-            alt="Background image"
-            fill
-            sizes="(max-width: 768px) 80vw, 384px"
-            className="object-cover"
-            priority={false}
+            src={project.img}
+            alt={`${project.title} preview`}
+            width={500}
+            height={300}
+            className="z-10 absolute bottom-0"
           />
         </div>
-        <Image
-          src={project.img}
-          alt={`${project.title} preview`}
-          width={500}
-          height={300}
-          className="z-10 absolute bottom-0"
-        />
-      </div>
 
-      <h1 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">
-        {project.title}
-      </h1>
+        <h1 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">
+          {project.title}
+        </h1>
 
-      <p
-        className="lg:text-xl lg:font-normal font-light text-sm line-clamp-2"
-        style={{
-          color: "#BEC1DD",
-          margin: "1vh 0",
-        }}
-      >
-        {project.des}
-      </p>
+        <p
+          className="lg:text-xl lg:font-normal font-light text-sm line-clamp-2"
+          style={{
+            color: "#BEC1DD",
+            margin: "1vh 0",
+          }}
+        >
+          {project.des}
+        </p>
 
-      <div className="flex items-center justify-between mt-7 mb-3">
-        <div className="flex items-center">
-          {project.iconLists.map((icon, index) => (
-            <ProjectIcon key={index} icon={icon} index={index} />
-          ))}
+        <div className="flex items-center justify-between mt-7 mb-3">
+          <div className="flex items-center">
+            {project.iconLists.map((icon, index) => (
+              <ProjectIcon key={index} icon={icon} index={index} />
+            ))}
+          </div>
+
+          <div className="flex justify-center items-center">
+            <p className="flex lg:text-xl md:text-xs text-sm text-purple">
+              Check Live Site
+            </p>
+            <FaLocationArrow className="ms-3" color="#CBACF9" />
+          </div>
         </div>
-
-        <div className="flex justify-center items-center">
-          <p className="flex lg:text-xl md:text-xs text-sm text-purple">
-            Check Live Site
-          </p>
-          <FaLocationArrow className="ms-3" color="#CBACF9" />
-        </div>
-      </div>
-    </PinContainer>
-  </div>
-));
+      </PinContainer>
+    </div>
+  );
+});
 
 ProjectCard.displayName = "ProjectCard";
 
