@@ -1,4 +1,11 @@
-import React, { useEffect, useState, useCallback, memo, useMemo } from "react";
+import React, {
+  useEffect,
+  useState,
+  useCallback,
+  memo,
+  useMemo,
+  useRef,
+} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CanvasRevealEffect } from "./ui/CanvasRevealEffect";
 
@@ -14,6 +21,7 @@ interface CardProps {
   };
   isActive: boolean;
   phase: number;
+  hasSeenAnimation: boolean;
 }
 
 interface IconProps {
@@ -146,7 +154,30 @@ CardContent.displayName = "CardContent";
 
 // Optimized approach card component
 const ApproachCard = memo(
-  ({ title, des, canvasProps, isActive, phase }: CardProps) => {
+  ({
+    title,
+    des,
+    canvasProps,
+    isActive,
+    phase,
+    hasSeenAnimation,
+  }: CardProps) => {
+    // Refs to track animation state
+    const wasActive = useRef(false);
+    const [hasAnimated, setHasAnimated] = useState(hasSeenAnimation);
+
+    // If the card becomes active and hasn't been animated before, mark it as animated
+    useEffect(() => {
+      if (isActive && !hasAnimated) {
+        setHasAnimated(true);
+      }
+
+      // Track previous active state
+      if (isActive) {
+        wasActive.current = true;
+      }
+    }, [isActive, hasAnimated]);
+
     // Memoize the icon render function
     const renderIcon = useCallback(
       () => <AceternityIcon order={`Phase ${phase}`} />,
@@ -170,23 +201,15 @@ const ApproachCard = memo(
       >
         <CornerIcons />
 
-        <AnimatePresence mode="wait">
-          {isActive && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="h-full w-full absolute inset-0"
-            >
-              <CanvasRevealEffect {...canvasProps} />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Show the canvas effect when appropriate */}
+        <div className="h-full w-full absolute inset-0">
+          {(isActive || hasAnimated) && <CanvasRevealEffect {...canvasProps} />}
+        </div>
 
         <div className="relative z-20 px-4 lg:px-10">
           <AnimatePresence mode="wait">
-            {!isActive ? (
+            {/* Show content if card is active now, or has completed animation */}
+            {!isActive && !hasAnimated ? (
               <motion.div
                 initial={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -206,17 +229,40 @@ const ApproachCard = memo(
 );
 ApproachCard.displayName = "ApproachCard";
 
-// Main component
+// Main component with fixed animation sequence
 const Approach = () => {
   const [activePhase, setActivePhase] = useState(0);
+  const [animatedCards, setAnimatedCards] = useState([false, false, false]);
 
   useEffect(() => {
-    // Optimized interval setup
-    const timer = setInterval(() => {
-      setActivePhase((prev) => (prev < 3 ? prev + 1 : 1));
-    }, 3000);
+    // Start the animation sequence
+    const ANIMATION_DURATION = 3000; // 3 seconds per card
 
-    return () => clearInterval(timer);
+    // Function to animate a specific phase (with proper typing)
+    const animateSequentially = (phaseNumber: number) => {
+      // Activate the current phase card
+      setActivePhase(phaseNumber);
+
+      // Mark this card as having been animated
+      setAnimatedCards((prev) => {
+        const updated = [...prev];
+        updated[phaseNumber - 1] = true;
+        return updated;
+      });
+
+      // Schedule the next phase if we haven't reached the end
+      if (phaseNumber < 3) {
+        setTimeout(
+          () => animateSequentially(phaseNumber + 1),
+          ANIMATION_DURATION
+        );
+      }
+    };
+
+    // Start the sequence with Phase 1 after a brief delay
+    const initialDelay = setTimeout(() => animateSequentially(1), 500);
+
+    return () => clearTimeout(initialDelay);
   }, []);
 
   return (
@@ -229,8 +275,9 @@ const Approach = () => {
           <ApproachCard
             key={card.title}
             {...card}
-            isActive={activePhase >= index + 1}
+            isActive={activePhase === index + 1}
             phase={index + 1}
+            hasSeenAnimation={animatedCards[index]}
           />
         ))}
       </div>
