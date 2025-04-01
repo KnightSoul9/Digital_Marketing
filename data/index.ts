@@ -43,7 +43,7 @@ export const projects = [
   {
     id: 1,
     title: " E-Commerce Sales Growth (Performance Marketing)",
-    des: "We helped an e-commerce brand increase its sales by 3.5x through highly optimized Google and Meta ads, reducing customer acquisition costs by 40% while improving ROAS.",
+    des: "We Helped An e-Commerce Brand Increase Its Sales By 3.5x Through Highly Optimized Google and Meta Ads, Reducing Customer Acquisition Costs By 40% While Improving ROAS",
     img: "/prj1.png",
     iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/fm.svg"],
     link: "https://v0-ecommerce-project-page.vercel.app/projects/ecommerce-growth",
@@ -51,10 +51,10 @@ export const projects = [
   {
     id: 2,
     title: "SEO-Driven Traffic Boost",
-    des: "A real estate client saw a 200% increase in organic traffic within six months as we optimized their website structure, built high-quality backlinks, and improved local SEO rankings.",
+    des: "A Real Estate Client Saw a 200% Increase In Organic Traffic Within Six Months As We Optimized Their Website Structure, Built High-Quality Backlinks, And Improved Local SEO Rankings",
     img: "/p2.svg",
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
-    link: "/ui.yoom.com",
+    link: "https://v0-next-js-project-page.vercel.app/",
   },
   {
     id: 3,
